@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { useState } from "react";
 import toast from "react-hot-toast";
 const inter = Inter({ subsets: ["latin"] });
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 export default function Home() {
   const [input, setInput] = useState('')
@@ -63,12 +64,19 @@ export default function Home() {
             Name: ${product.product_name || "N/A"}
             Brands: ${product.brands || "N/A"}
             Ingredients: ${product.ingredients_text || "N/A"}
+            Allergens: ${product.allergens || "N/A"}
+            Nutritional Grade: ${product.nutrition_grades || "N/A"}
+            Eco Score: ${product.ecoscore_grade || "N/A"}
+            Processed: ${product.ingredients_analysis_tags?.includes("en:ultra-processed-food") ? "Yes" : "No"}
+            Carbon Footprint: ${product.nutriments["carbon-footprint_100g"] || "N/A"} g CO2 per 100g
+            Vegan: ${product.labels_tags?.includes("en:vegan") ? "Yes" : "No"}
             Nutriments: 
               - Energy: ${product.nutriments.energy_kcal || "N/A"} kcal
               - Fat: ${product.nutriments.fat || "N/A"} g
               - Carbohydrates: ${product.nutriments.carbohydrates || "N/A"} g
               - Sugars: ${product.nutriments.sugars || "N/A"} g
               - Proteins: ${product.nutriments.proteins || "N/A"} g
+              
           `;
 
           setHeading(product.product_name || "Product Details");
