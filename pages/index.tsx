@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import { useState } from "react";
 import toast from "react-hot-toast";
 const inter = Inter({ subsets: ["latin"] });
-const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 export default function Home() {
   const [input, setInput] = useState('')
